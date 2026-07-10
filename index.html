@@ -3,87 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Çiftçihan — Gizlilik Politikası</title>
-  <meta name="description" content="Çiftçihan mobil uygulaması gizlilik politikası ve KVKK aydınlatma metni.">
+  <title>Çiftçihan — Çiftliğini cebinden yönet</title>
+  <meta name="description" content="Çiftçihan: tarla, ekiliş, depo, görev ve finans kayıtlarını tek uygulamada tutan, ekiliş başına kâr-zarar gösteren çiftlik yönetim uygulaması. Yakında Google Play'de.">
+  <meta property="og:title" content="Çiftçihan — Çiftliğini cebinden yönet">
+  <meta property="og:description" content="Hangi ekin sana ne kazandırdı? Depo, mazot, işçilik ve satışları ekilişe bağla; sezon sonunda kârını anında gör.">
+  <meta property="og:image" content="https://www.ciftcihan.com/img/01-anasayfa.png">
+  <meta property="og:url" content="https://www.ciftcihan.com/">
+  <link rel="icon" type="image/png" href="img/ikon.png">
   <style>
     :root {
       --soil: #17160F; --paper: #F2EFE6; --card: #FFFFFF; --line: #E6E1D4;
       --gold: #E0A100; --olive: #4E7A12; --olive-soft: #EBF1DF; --sub: #6E695B; --clay: #B23A2E;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: var(--paper); color: var(--soil); line-height: 1.65; }
-    .kap { max-width: 720px; margin: 0 auto; padding: 40px 20px 60px; }
-    .logo { width: 60px; height: 60px; border-radius: 18px; background: var(--olive-soft); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 30px; }
-    h1 { font-size: 26px; text-align: center; }
-    .alt { text-align: center; color: var(--sub); font-size: 14px; margin: 6px 0 30px; }
-    .kart { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px; margin-bottom: 16px; }
-    h2 { font-size: 17px; margin-bottom: 10px; color: var(--olive); }
-    p, li { font-size: 14.5px; color: #3A372C; margin-bottom: 8px; }
-    ul { padding-left: 20px; margin-bottom: 8px; }
-    strong { color: var(--soil); }
-    .not { font-size: 12.5px; color: var(--sub); text-align: center; margin-top: 24px; }
-    a { color: var(--olive); font-weight: 600; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: var(--paper); color: var(--soil); line-height: 1.6; }
+    .kap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* Tepe */
+    .tepe { text-align: center; padding: 56px 0 34px; }
+    .logo { width: 84px; height: 84px; border-radius: 24px; margin: 0 auto 16px; display: block; box-shadow: 0 6px 18px rgba(78,122,18,.25); }
+    h1 { font-size: 40px; letter-spacing: -0.5px; }
+    .slogan { font-size: 19px; color: var(--olive); font-weight: 700; margin-top: 4px; }
+    .ozet { font-size: 15.5px; color: var(--sub); max-width: 560px; margin: 14px auto 0; }
+    .rozetler { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+    .rozet { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; padding: 11px 18px; font-size: 14.5px; font-weight: 700; }
+    .rozet.dolu { background: var(--soil); color: #fff; }
+    .rozet.cizgi { background: var(--card); border: 1px solid var(--line); color: var(--soil); text-decoration: none; }
+    .rozet.cizgi:hover { border-color: var(--olive); color: var(--olive); }
+
+    /* Ekran görüntüleri */
+    .ekranlar { display: flex; gap: 18px; justify-content: center; padding: 26px 0 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ekranlar img { width: 240px; max-width: 68vw; border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 12px 28px rgba(23,22,15,.14); flex-shrink: 0; }
+
+    /* Bölüm başlığı */
+    .bolum-baslik { text-align: center; font-size: 24px; margin: 46px 0 6px; }
+    .bolum-alt { text-align: center; color: var(--sub); font-size: 14.5px; margin-bottom: 24px; }
+
+    /* Özellik kartları */
+    .ozellikler { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .kart { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+    .cip { width: 44px; height: 44px; border-radius: 13px; background: var(--olive-soft); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
+    .kart h3 { font-size: 16px; margin-bottom: 5px; }
+    .kart p { font-size: 13.5px; color: var(--sub); }
+
+    /* Nasıl çalışır */
+    .adimlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .adim { text-align: center; padding: 18px 14px; }
+    .adim .no { width: 34px; height: 34px; border-radius: 50%; background: var(--olive); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+    .adim h3 { font-size: 15.5px; margin-bottom: 4px; }
+    .adim p { font-size: 13.5px; color: var(--sub); }
+
+    /* Kapanış + altbilgi */
+    .kapanis { text-align: center; background: var(--olive-soft); border: 1px solid var(--line); border-radius: 20px; padding: 34px 22px; margin: 48px 0 0; }
+    .kapanis h2 { font-size: 21px; margin-bottom: 6px; }
+    .kapanis p { color: var(--sub); font-size: 14.5px; margin-bottom: 18px; }
+    .altbilgi { text-align: center; padding: 34px 0 44px; font-size: 13px; color: var(--sub); }
+    .altbilgi a { color: var(--olive); font-weight: 600; }
   </style>
 </head>
 <body>
-  <div class="kap">
-    <div class="logo">🌿</div>
-    <h1>Çiftçihan — Gizlilik Politikası</h1>
-    <p class="alt">KVKK Aydınlatma Metni · Son güncelleme: 7 Temmuz 2026</p>
 
-    <div class="kart">
-      <h2>1. Biz kimiz?</h2>
-      <p>Çiftçihan, tarım işletmelerinin tarla, depo, görev ve finans kayıtlarını yönetmesine yardımcı olan bir mobil uygulamadır. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, uygulamayı kullanırken hangi verilerinizin nasıl işlendiğini açıklar.</p>
-      <p><strong>Veri sorumlusu / İletişim:</strong> Çiftçihan — <a href="mailto:ciftcihan801@gmail.com">ciftcihan801@gmail.com</a></p>
+  <header class="tepe kap">
+    <img class="logo" src="img/ikon.png" alt="Çiftçihan logosu">
+    <h1>Çiftçihan</h1>
+    <p class="slogan">Çiftliğini cebinden yönet</p>
+    <p class="ozet">Hangi ekin sana ne kazandırdı? Depo çıkışını, mazotu, işçiliği ve satışları ekilişe bağla — sezon sonunda kârını <strong>anında</strong> gör.</p>
+    <div class="rozetler">
+      <span class="rozet dolu">📱 Yakında Google Play'de</span>
+      <a class="rozet cizgi" href="mailto:bilgi@ciftcihan.com">✉️ bilgi@ciftcihan.com</a>
+    </div>
+  </header>
+
+  <section class="ekranlar kap">
+    <img src="img/01-anasayfa.png" alt="Ana sayfa — sezon özeti ve net kâr" loading="lazy">
+    <img src="img/02-ekilis.png" alt="Ekiliş detayı — kâr-zarar kartı" loading="lazy">
+    <img src="img/03-depo.png" alt="Depo — stok ve kritik seviye takibi" loading="lazy">
+  </section>
+
+  <main class="kap">
+    <h2 class="bolum-baslik">Çiftliğin için tek uygulama</h2>
+    <p class="bolum-alt">Defter, ajanda ve hesap makinesi yerine — hepsi bir arada, Türkçe ve sade.</p>
+    <div class="ozellikler">
+      <div class="kart"><div class="cip">🌱</div><h3>Ekiliş başına kâr-zarar</h3><p>Gübre, ilaç, tohum, mazot, işçilik ve satışlar ekilişe işlenir; her tarlanın net kârını sezon bitmeden görürsün.</p></div>
+      <div class="kart"><div class="cip">📦</div><h3>Depo &amp; maliyet takibi</h3><p>Giriş-çıkış hareketleriyle stok her an günceldir; kritik seviyeye düşen ürün seni uyarır. Maliyet ağırlıklı ortalamayla hesaplanır.</p></div>
+      <div class="kart"><div class="cip">👥</div><h3>Görevler &amp; ekip</h3><p>Çalışanlarına iş ata veya görev havuzuna bırak; kim neyi yaptı takip et. Çalışanlar finansal verileri göremez.</p></div>
+      <div class="kart"><div class="cip">💰</div><h3>Cari, çek, kredi</h3><p>Alacak-borç tek yerde: cari hesaplar, çek vadeleri, kredi taksitleri ve ödeme planları — yaklaşanlar ana sayfada.</p></div>
+      <div class="kart"><div class="cip">📡</div><h3>Sinyalsizken de çalışır</h3><p>Tarlada internet yoksa kayıtların cihazda birikir, sinyal gelince kendiliğinden gönderilir.</p></div>
+      <div class="kart"><div class="cip">📊</div><h3>Raporlar</h3><p>Ürün, tarla ve sezon bazlı kâr-zarar; gider kırılımı ve mazot raporu — kararlarını rakamla ver.</p></div>
     </div>
 
-    <div class="kart">
-      <h2>2. Hangi verileri topluyoruz?</h2>
-      <ul>
-        <li><strong>Hesap bilgileri:</strong> Ad soyad, e-posta adresi, şifre (şifrelenmiş olarak saklanır).</li>
-        <li><strong>İşletme verileri:</strong> İşletme adı, tarla, ekiliş, depo/stok, satış, işçilik, cari hesap, çek, kredi, ödeme planı, emanet, araç ve görev kayıtları — <em>yalnızca sizin girdiğiniz bilgiler</em>.</li>
-        <li><strong>Fotoğraflar:</strong> Uygulama içinde çektiğiniz ürün, fiş/fatura ve çek fotoğrafları.</li>
-      </ul>
-      <p>Konum takibi yapmayız, rehberinize erişmeyiz, reklam kimliği toplamayız.</p>
+    <h2 class="bolum-baslik">Nasıl çalışır?</h2>
+    <div class="adimlar">
+      <div class="adim"><div class="no">1</div><h3>Kaydol</h3><p>E-postanla ücretsiz hesap aç, işletmeni ve tarlalarını tanıt.</p></div>
+      <div class="adim"><div class="no">2</div><h3>Kayıtlarını gir</h3><p>Depo çıkışı, satış, işçilik — günlük işleri iki dokunuşla işle.</p></div>
+      <div class="adim"><div class="no">3</div><h3>Kârını gör</h3><p>Her ekilişin gelir-gider dengesi ve net kârı otomatik hesaplanır.</p></div>
     </div>
 
-    <div class="kart">
-      <h2>3. Verileriniz ne için kullanılır?</h2>
-      <ul>
-        <li>Uygulamanın çalışması: kayıtlarınızı saklamak ve size göstermek.</li>
-        <li>İşletme içi paylaşım: işletmenize davet ettiğiniz kişiler, rollerine göre işletme verilerini görür (çalışanlar finansal verileri <strong>göremez</strong>).</li>
-        <li>Hesabınızın güvenliği ve giriş işlemleri.</li>
-      </ul>
-      <p>Verileriniz <strong>reklam amacıyla kullanılmaz, üçüncü kişilere satılmaz veya pazarlama için paylaşılmaz.</strong></p>
+    <div class="kapanis">
+      <h2>Çiftçihan çok yakında Google Play'de 🌱</h2>
+      <p>Sorun ve önerilerin için bize yaz — çiftçiden gelen her fikir uygulamayı büyütüyor.</p>
+      <a class="rozet dolu" href="mailto:bilgi@ciftcihan.com" style="text-decoration:none">✉️ Bize ulaş</a>
     </div>
+  </main>
 
-    <div class="kart">
-      <h2>4. Verileriniz nerede saklanır?</h2>
-      <p>Verileriniz, altyapı sağlayıcımız <strong>Supabase</strong> üzerinde (Avrupa Birliği veri merkezlerinde), erişim kontrolü ve satır düzeyi güvenlik (RLS) ile korunarak saklanır. Her işletmenin verisi diğerlerinden yalıtılmıştır; yalnızca o işletmenin üyeleri erişebilir.</p>
-    </div>
+  <footer class="altbilgi">
+    © 2026 Çiftçihan · <a href="gizlilik.html">Gizlilik Politikası (KVKK)</a> · <a href="mailto:bilgi@ciftcihan.com">bilgi@ciftcihan.com</a>
+  </footer>
 
-    <div class="kart">
-      <h2>5. Verileriniz ne kadar saklanır ve nasıl silinir?</h2>
-      <p>Verileriniz, hesabınız aktif olduğu sürece saklanır. Uygulama içinden <strong>Profil → Hesabımı sil</strong> adımıyla hesabınızı istediğiniz an kalıcı olarak silebilirsiniz. Bu işlemle:</p>
-      <ul>
-        <li>Hesabınız ve kişisel bilgileriniz kalıcı olarak silinir,</li>
-        <li>Tek sahibi olduğunuz işletmeler tüm kayıtlarıyla birlikte silinir,</li>
-        <li>Başka sahipleri olan işletmelerdeki üyeliğiniz sonlandırılır (işletmenin ortak kayıtları işletmede kalır).</li>
-      </ul>
-      <p>Silme işlemi geri alınamaz. Dilerseniz silme talebinizi <a href="mailto:ciftcihan801@gmail.com">ciftcihan801@gmail.com</a> adresine e-posta göndererek de iletebilirsiniz.</p>
-    </div>
-
-    <div class="kart">
-      <h2>6. KVKK kapsamındaki haklarınız</h2>
-      <p>KVKK'nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme, işlenmesine itiraz etme haklarına sahipsiniz. Talepleriniz için: <a href="mailto:ciftcihan801@gmail.com">ciftcihan801@gmail.com</a></p>
-    </div>
-
-    <div class="kart">
-      <h2>7. Değişiklikler</h2>
-      <p>Bu politika güncellendiğinde bu sayfada yayınlanır; önemli değişiklikler uygulama içinden duyurulur.</p>
-    </div>
-
-    <p class="not">© 2026 Çiftçihan · <a href="mailto:ciftcihan801@gmail.com">ciftcihan801@gmail.com</a></p>
-  </div>
 </body>
 </html>

@@ -10,106 +10,532 @@
   <meta property="og:image" content="https://www.ciftcihan.com/img/01-anasayfa.png">
   <meta property="og:url" content="https://www.ciftcihan.com/">
   <link rel="icon" type="image/png" href="img/ikon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --soil: #17160F; --paper: #F2EFE6; --card: #FFFFFF; --line: #E6E1D4;
-      --gold: #E0A100; --olive: #4E7A12; --olive-soft: #EBF1DF; --sub: #6E695B; --clay: #B23A2E;
+      --krem: #F5F1E6;
+      --kart: #FBF9F1;
+      --yesil: #1E3A2B;
+      --yesil-koyu: #12271C;
+      --yesil-encoyu: #0C1B13;
+      --taze: #2F7D4E;
+      --yesil-tint: #EBF3EA;
+      --sari: #E9B949;
+      --sari-acik: #f0c563;
+      --altin: #B8860B;
+      --sari-tint: #FBEFD6;
+      --metin: #22201B;
+      --metin2: #43503F;
+      --metin3: #4B5748;
+      --metin4: #5B6858;
+      --cizgi: rgba(30,58,43,0.09);
+      --baslik-font: 'Bricolage Grotesque', sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: var(--paper); color: var(--soil); line-height: 1.6; overflow-x: hidden; }
-    .kap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Instrument Sans', -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--krem);
+      color: var(--metin);
+      overflow-x: hidden;
+    }
+    a { color: var(--taze); text-decoration: none; }
+    a:hover { color: var(--yesil); }
+    img { max-width: 100%; }
+    ::selection { background: var(--sari); color: var(--yesil); }
+    .kap { max-width: 1200px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
 
-    /* Tepe */
-    .tepe { text-align: center; padding: 56px 20px 34px; }
-    .logo { width: 84px; height: 84px; border-radius: 24px; margin: 0 auto 16px; display: block; box-shadow: 0 6px 18px rgba(78,122,18,.25); }
-    h1 { font-size: 40px; letter-spacing: -0.5px; }
-    .slogan { font-size: 19px; color: var(--olive); font-weight: 700; margin-top: 4px; }
-    .ozet { font-size: 15.5px; color: var(--sub); max-width: min(560px, 100%); margin: 14px auto 0; }
-    .rozetler { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
-    .rozet { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; padding: 11px 18px; font-size: 14.5px; font-weight: 700; }
-    .rozet.dolu { background: var(--soil); color: #fff; }
-    .rozet.cizgi { background: var(--card); border: 1px solid var(--line); color: var(--soil); text-decoration: none; }
-    .rozet.cizgi:hover { border-color: var(--olive); color: var(--olive); }
+    @keyframes floaty  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    @keyframes floaty2 { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-10px) rotate(-4deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .tel-on, .tel-arka { animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
 
-    /* Ekran görüntüleri */
-    .ekranlar { display: flex; gap: 18px; padding: 26px 20px 14px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .ekranlar img { width: 240px; max-width: 62vw; border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 12px 28px rgba(23,22,15,.14); flex-shrink: 0; }
-    .ekranlar img:first-child { margin-left: auto; }
-    .ekranlar img:last-child { margin-right: auto; }
+    /* ── Üst menü ── */
+    .tepe {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      background: rgba(245,241,230,0.82);
+      border-bottom: 1px solid rgba(30,58,43,0.08);
+    }
+    .tepe-ic { padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .marka { display: flex; align-items: center; gap: 12px; }
+    .marka img { width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 2px 8px rgba(30,58,43,0.18); }
+    .marka span { font-family: var(--baslik-font); font-weight: 700; font-size: 22px; color: var(--yesil); letter-spacing: -0.02em; }
+    .menu { display: flex; align-items: center; gap: 34px; }
+    .menu a.link { color: #3B4A3F; font-weight: 500; font-size: 15px; }
+    .menu a.link:hover { color: var(--taze); }
+    .hap {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yesil); color: var(--krem);
+      padding: 11px 20px; border-radius: 999px; font-weight: 600; font-size: 15px;
+      transition: background .2s;
+    }
+    .hap:hover { background: var(--taze); color: var(--krem); }
 
-    /* Bölüm başlığı */
-    .bolum-baslik { text-align: center; font-size: 24px; margin: 46px 0 6px; }
-    .bolum-alt { text-align: center; color: var(--sub); font-size: 14.5px; margin-bottom: 24px; }
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      padding-top: 76px; padding-bottom: 40px;
+      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center;
+    }
+    .hero-isik {
+      position: absolute; top: -60px; left: -160px; width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(46,125,78,0.16), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-sol { position: relative; }
+    .rozet {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--yesil-tint); border: 1px solid rgba(46,125,78,0.28);
+      color: var(--taze); font-weight: 600; font-size: 13.5px;
+      padding: 8px 15px; border-radius: 999px; letter-spacing: 0.01em;
+    }
+    .rozet .nokta {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--sari); box-shadow: 0 0 0 4px rgba(233,185,73,0.25);
+    }
+    .hero h1 {
+      font-family: var(--baslik-font); font-weight: 800; font-size: 68px;
+      line-height: 0.98; letter-spacing: -0.035em; color: var(--yesil);
+      margin-top: 24px; text-wrap: balance;
+    }
+    .hero h1 .vurgu { color: var(--taze); }
+    .hero-ozet { font-size: 20px; line-height: 1.5; color: var(--metin2); margin-top: 22px; max-width: 500px; text-wrap: pretty; }
+    .hero-ozet strong { color: var(--yesil); }
+    .cta-satir { display: flex; align-items: center; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+    .btn-sari {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--sari); color: var(--yesil);
+      padding: 16px 26px; border-radius: 14px; font-weight: 700; font-size: 17px;
+      box-shadow: 0 10px 24px rgba(233,185,73,0.4);
+      transition: background .2s;
+    }
+    .btn-sari:hover { background: var(--sari-acik); color: var(--yesil); }
+    .btn-cizgili {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--yesil); padding: 16px 20px; border-radius: 14px;
+      font-weight: 600; font-size: 17px; border: 1.5px solid rgba(30,58,43,0.2);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-cizgili:hover { border-color: var(--taze); color: var(--taze); }
+    .guven { display: flex; align-items: center; gap: 22px; margin-top: 30px; color: var(--metin4); font-size: 14.5px; font-weight: 500; flex-wrap: wrap; }
+    .guven span { display: inline-flex; align-items: center; gap: 8px; }
 
-    /* Özellik kartları */
-    .ozellikler { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-    .kart { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
-    .cip { width: 44px; height: 44px; border-radius: 13px; background: var(--olive-soft); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
-    .kart h3 { font-size: 16px; margin-bottom: 5px; }
-    .kart p { font-size: 13.5px; color: var(--sub); }
+    /* Telefonlar */
+    .teller { position: relative; height: 580px; }
+    .tel-isik {
+      position: absolute; top: 40px; right: 30px; width: 320px; height: 200px;
+      background: radial-gradient(circle, rgba(233,185,73,0.3), transparent 70%);
+      filter: blur(10px);
+    }
+    .tel-arka { position: absolute; top: 60px; left: 0; width: 236px; animation: floaty2 7s ease-in-out infinite; z-index: 1; }
+    .tel-arka .cerceve {
+      border: 5px solid var(--yesil); border-radius: 40px; padding: 6px;
+      background: var(--krem); box-shadow: 0 30px 60px rgba(30,58,43,0.3);
+    }
+    .tel-arka .ekran { position: relative; border-radius: 32px; overflow: hidden; }
+    .tel-on { position: absolute; top: 0; right: 0; width: 264px; animation: floaty 6s ease-in-out infinite; z-index: 2; }
+    .tel-on .cerceve {
+      border: 6px solid var(--yesil); border-radius: 46px; padding: 7px;
+      background: var(--krem); box-shadow: 0 44px 80px rgba(18,39,28,0.38);
+    }
+    .tel-on .ekran { position: relative; border-radius: 36px; overflow: hidden; }
+    .tel-on .centik {
+      position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+      width: 78px; height: 6px; border-radius: 999px;
+      background: rgba(30,58,43,0.35); z-index: 3;
+    }
+    .teller img { width: 100%; display: block; }
 
-    /* Nasıl çalışır */
-    .adimlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-    .adim { text-align: center; padding: 18px 14px; }
-    .adim .no { width: 34px; height: 34px; border-radius: 50%; background: var(--olive); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
-    .adim h3 { font-size: 15.5px; margin-bottom: 4px; }
-    .adim p { font-size: 13.5px; color: var(--sub); }
+    /* ── Güven şeridi ── */
+    .serit { margin-top: 24px; }
+    .serit-ic {
+      border-top: 1px solid rgba(30,58,43,0.1); border-bottom: 1px solid rgba(30,58,43,0.1);
+      padding: 26px 0; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .serit-ic > p { font-size: 15px; color: var(--metin4); font-weight: 500; }
+    .serit-ic > p strong { color: var(--yesil); }
+    .sayilar { display: flex; gap: 40px; flex-wrap: wrap; }
+    .sayi b { font-family: var(--baslik-font); font-weight: 800; font-size: 30px; color: var(--yesil); display: block; }
+    .sayi b.yesil { color: var(--taze); }
+    .sayi small { font-size: 13px; color: var(--metin4); }
 
-    /* Kapanış + altbilgi */
-    .kapanis { text-align: center; background: var(--olive-soft); border: 1px solid var(--line); border-radius: 20px; padding: 34px 22px; margin: 48px 0 0; }
-    .kapanis h2 { font-size: 21px; margin-bottom: 6px; }
-    .kapanis p { color: var(--sub); font-size: 14.5px; margin-bottom: 18px; }
-    .altbilgi { text-align: center; padding: 34px 0 44px; font-size: 13px; color: var(--sub); }
-    .altbilgi a { color: var(--olive); font-weight: 600; }
+    /* ── Bölüm başlıkları ── */
+    .etiket {
+      font-family: var(--baslik-font); color: var(--taze); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .etiket.sari { color: var(--sari); }
+    h2.bolum {
+      font-family: var(--baslik-font); font-weight: 700; font-size: 44px;
+      line-height: 1.05; letter-spacing: -0.03em; color: var(--yesil); margin-top: 12px;
+    }
+
+    /* ── Özellikler ── */
+    .ozellikler { padding-top: 84px; padding-bottom: 20px; }
+    .ozellikler-bas { max-width: 620px; }
+    .ozellikler-bas p { font-size: 18px; color: var(--metin2); margin-top: 16px; line-height: 1.5; }
+    .kartlar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+    .kart {
+      background: var(--kart); border: 1px solid var(--cizgi); border-radius: 22px;
+      padding: 30px; transition: transform .25s, box-shadow .25s;
+    }
+    .kart:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(30,58,43,0.12); }
+    .ikon-kutu { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+    .ikon-kutu.yesil { background: var(--yesil-tint); color: var(--taze); }
+    .ikon-kutu.sari { background: var(--sari-tint); color: var(--altin); }
+    .kart h3 {
+      font-family: var(--baslik-font); font-weight: 700; font-size: 22px;
+      color: var(--yesil); margin-top: 20px; letter-spacing: -0.01em;
+    }
+    .kart p { font-size: 15.5px; line-height: 1.55; color: var(--metin3); margin-top: 10px; }
+    .ikon-kutu svg { display: block; }
+
+    /* ── Ekiliş vitrini ── */
+    .vitrin { margin-top: 40px; padding-top: 40px; padding-bottom: 40px; }
+    .vitrin-panel {
+      background: linear-gradient(135deg, var(--yesil), var(--yesil-koyu));
+      border-radius: 34px; padding: 60px;
+      display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center;
+      overflow: hidden; position: relative;
+    }
+    .vitrin-isik {
+      position: absolute; top: -80px; right: -60px; width: 340px; height: 340px;
+      background: radial-gradient(circle, rgba(233,185,73,0.22), transparent 70%);
+    }
+    .vitrin-sol { position: relative; }
+    .vitrin h2 {
+      font-family: var(--baslik-font); font-weight: 700; font-size: 40px;
+      line-height: 1.08; letter-spacing: -0.03em; color: var(--krem); margin-top: 14px;
+    }
+    .vitrin-ozet { font-size: 18px; line-height: 1.55; color: #C7D3C4; margin-top: 18px; max-width: 480px; }
+    .vitrin ul { list-style: none; margin-top: 26px; display: flex; flex-direction: column; gap: 14px; }
+    .vitrin li { display: flex; align-items: center; gap: 12px; color: #E4ECE1; font-size: 16px; font-weight: 500; }
+    .vitrin li .elmas { color: var(--sari); }
+    .vitrin-tel { position: relative; justify-self: center; }
+    .vitrin-tel .cerceve {
+      border-radius: 38px; padding: 9px; background: var(--yesil-encoyu);
+      box-shadow: 0 40px 70px rgba(0,0,0,0.4);
+    }
+    .vitrin-tel img { width: 300px; display: block; border-radius: 30px; }
+
+    /* ── Nasıl çalışır ── */
+    .nasil { padding-top: 84px; padding-bottom: 40px; }
+    .nasil-bas { text-align: center; max-width: 640px; margin: 0 auto; }
+    .adimlar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+    .adim {
+      position: relative; background: var(--kart); border: 1px solid var(--cizgi);
+      border-radius: 22px; padding: 34px 30px;
+    }
+    .adim .no { font-family: var(--baslik-font); font-weight: 800; font-size: 60px; color: rgba(46,125,78,0.18); line-height: 1; }
+    .adim h3 { font-family: var(--baslik-font); font-weight: 700; font-size: 23px; color: var(--yesil); margin-top: 8px; }
+    .adim p { font-size: 15.5px; line-height: 1.55; color: var(--metin3); margin-top: 10px; }
+
+    /* ── Raporlar ── */
+    .raporlar { padding-top: 40px; padding-bottom: 20px; }
+    .rapor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .rapor-kutu { border-radius: 24px; padding: 42px; }
+    .rapor-kutu.acik { background: var(--yesil-tint); border: 1px solid rgba(46,125,78,0.18); }
+    .rapor-kutu.koyu { background: var(--yesil); }
+    .rapor-kutu .ikon-kutu.dolu-yesil { background: var(--taze); color: var(--krem); }
+    .rapor-kutu .ikon-kutu.dolu-sari { background: var(--sari); color: var(--yesil); }
+    .rapor-kutu h3 { font-family: var(--baslik-font); font-weight: 700; font-size: 26px; margin-top: 18px; }
+    .rapor-kutu.acik h3 { color: var(--yesil); }
+    .rapor-kutu.koyu h3 { color: var(--krem); }
+    .rapor-kutu p { font-size: 16.5px; line-height: 1.55; margin-top: 10px; max-width: 420px; }
+    .rapor-kutu.acik p { color: #3F4E3F; }
+    .rapor-kutu.koyu p { color: #C7D3C4; }
+
+    /* ── Kapanış CTA ── */
+    .kapanis { padding-top: 70px; padding-bottom: 40px; }
+    .kapanis-panel {
+      background: linear-gradient(135deg, var(--sari), var(--sari-acik));
+      border-radius: 34px; padding: 66px 60px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .kapanis-isik { position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.4), transparent 50%); }
+    .kapanis-ic { position: relative; }
+    .kapanis h2 {
+      font-family: var(--baslik-font); font-weight: 800; font-size: 46px;
+      line-height: 1.05; letter-spacing: -0.03em; color: var(--yesil); text-wrap: balance;
+    }
+    .kapanis p { font-size: 19px; color: #4A3F1E; margin-top: 18px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .kapanis .btn-satir { display: flex; justify-content: center; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+    .btn-koyu {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--yesil); color: var(--krem);
+      padding: 17px 30px; border-radius: 14px; font-weight: 700; font-size: 17px;
+      transition: background .2s;
+    }
+    .btn-koyu:hover { background: var(--taze); color: var(--krem); }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid rgba(30,58,43,0.1); margin-top: 40px; }
+    .alt-ic { padding-top: 40px; padding-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .alt-marka { display: flex; align-items: center; gap: 12px; }
+    .alt-marka img { width: 34px; height: 34px; border-radius: 9px; }
+    .alt-marka span { font-family: var(--baslik-font); font-weight: 700; font-size: 18px; color: var(--yesil); }
+    .alt-linkler { display: flex; align-items: center; gap: 26px; font-size: 14.5px; color: var(--metin4); flex-wrap: wrap; }
+    .alt-linkler a { color: var(--metin4); }
+    .alt-linkler a:hover { color: var(--yesil); }
+
+    /* ── Mobil ── */
+    @media (max-width: 900px) {
+      .kap { padding-left: 20px; padding-right: 20px; }
+      .hero { grid-template-columns: 1fr; padding-top: 44px; gap: 30px; }
+      .hero h1 { font-size: 40px; }
+      .hero-ozet { font-size: 17px; }
+      .hero-isik { left: -120px; }
+      h2.bolum { font-size: 30px; }
+      .teller { height: 470px; max-width: 400px; margin: 0 auto; width: 100%; }
+      .tel-arka { width: 188px; top: 56px; }
+      .tel-on { width: 212px; }
+      .ozellikler { padding-top: 56px; }
+      .kartlar { grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 30px; }
+      .vitrin-panel { grid-template-columns: 1fr; padding: 34px 24px; gap: 30px; }
+      .vitrin h2 { font-size: 30px; }
+      .vitrin-ozet { font-size: 16.5px; }
+      .vitrin-tel img { width: min(280px, 70vw); }
+      .nasil { padding-top: 56px; }
+      .adimlar { grid-template-columns: 1fr; gap: 14px; margin-top: 30px; }
+      .rapor-grid { grid-template-columns: 1fr; gap: 14px; }
+      .rapor-kutu { padding: 30px 24px; }
+      .kapanis { padding-top: 48px; }
+      .kapanis-panel { padding: 44px 24px; }
+      .kapanis h2 { font-size: 32px; }
+      .kapanis p { font-size: 17px; }
+    }
+    @media (max-width: 720px) {
+      .menu a.link { display: none; }
+      .hap { padding: 9px 16px; font-size: 14px; }
+    }
+    @media (max-width: 600px) {
+      .kartlar { grid-template-columns: 1fr; }
+      .sayilar { gap: 24px; }
+      .guven { gap: 12px; }
+      .cta-satir .btn-sari, .cta-satir .btn-cizgili { font-size: 15.5px; padding: 14px 20px; }
+    }
   </style>
 </head>
 <body>
 
-  <header class="tepe kap">
-    <img class="logo" src="img/ikon.png" alt="Çiftçihan logosu">
-    <h1>Çiftçihan</h1>
-    <p class="slogan">Çiftliğini cebinden yönet</p>
-    <p class="ozet">Hangi ekin sana ne kazandırdı? Depo çıkışını, mazotu, işçiliği ve satışları ekilişe bağla — sezon sonunda kârını <strong>anında</strong> gör.</p>
-    <div class="rozetler">
-      <span class="rozet dolu">📱 Yakında Google Play ve App Store'da</span>
-      <a class="rozet cizgi" href="mailto:bilgi@ciftcihan.com">✉️ bilgi@ciftcihan.com</a>
+  <!-- Üst menü -->
+  <header class="tepe">
+    <div class="kap tepe-ic">
+      <a class="marka" href="#top">
+        <img src="img/ikon.png" alt="Çiftçihan logosu">
+        <span>Çiftçihan</span>
+      </a>
+      <nav class="menu">
+        <a class="link" href="#ozellikler">Özellikler</a>
+        <a class="link" href="#nasil">Nasıl çalışır</a>
+        <a class="link" href="#raporlar">Raporlar</a>
+        <a class="hap" href="mailto:bilgi@ciftcihan.com">Erken erişim →</a>
+      </nav>
     </div>
   </header>
 
-  <section class="ekranlar kap">
-    <img src="img/01-anasayfa.png" alt="Ana sayfa — sezon özeti ve net kâr" loading="lazy">
-    <img src="img/02-ekilis.png" alt="Ekiliş detayı — kâr-zarar kartı" loading="lazy">
-    <img src="img/03-depo.png" alt="Depo — stok ve kritik seviye takibi" loading="lazy">
+  <!-- Hero -->
+  <section id="top" class="kap hero">
+    <div class="hero-isik"></div>
+    <div class="hero-sol">
+      <span class="rozet"><span class="nokta"></span> Çok yakında Google Play &amp; App Store'da</span>
+      <h1>Çiftliğini <span class="vurgu">cebinden</span> yönet</h1>
+      <p class="hero-ozet">Hangi ekin sana ne kazandırdı? Depo çıkışını, mazotu, işçiliği ve satışları ekilişe bağla — sezon sonunda kârını <strong>anında</strong> gör.</p>
+      <div class="cta-satir">
+        <a class="btn-sari" href="mailto:bilgi@ciftcihan.com">Erken erişim listesine katıl</a>
+        <a class="btn-cizgili" href="#ozellikler">Nasıl çalışır?</a>
+      </div>
+      <div class="guven">
+        <span>✓ Türkçe &amp; sade</span>
+        <span>✓ Sinyalsiz çalışır</span>
+        <span>✓ Ücretsiz başla</span>
+      </div>
+    </div>
+    <div class="teller">
+      <div class="tel-isik"></div>
+      <div class="tel-arka">
+        <div class="cerceve">
+          <div class="ekran">
+            <img src="img/03-depo.png" alt="Depo — stok ve kritik seviye takibi">
+          </div>
+        </div>
+      </div>
+      <div class="tel-on">
+        <div class="cerceve">
+          <div class="ekran">
+            <div class="centik"></div>
+            <img src="img/01-anasayfa.png" alt="Ana sayfa — sezon özeti ve net kâr">
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <main class="kap">
-    <h2 class="bolum-baslik">Çiftliğin için tek uygulama</h2>
-    <p class="bolum-alt">Defter, ajanda ve hesap makinesi yerine — hepsi bir arada, Türkçe ve sade.</p>
-    <div class="ozellikler">
-      <div class="kart"><div class="cip">🌱</div><h3>Ekiliş başına kâr-zarar</h3><p>Gübre, ilaç, tohum, mazot, işçilik ve satışlar ekilişe işlenir; her tarlanın net kârını sezon bitmeden görürsün.</p></div>
-      <div class="kart"><div class="cip">📦</div><h3>Depo &amp; maliyet takibi</h3><p>Giriş-çıkış hareketleriyle stok her an günceldir; kritik seviyeye düşen ürün seni uyarır. Maliyet ağırlıklı ortalamayla hesaplanır.</p></div>
-      <div class="kart"><div class="cip">👥</div><h3>Görevler &amp; ekip</h3><p>Çalışanlarına iş ata veya görev havuzuna bırak; kim neyi yaptı takip et. Çalışanlar finansal verileri göremez.</p></div>
-      <div class="kart"><div class="cip">💰</div><h3>Cari, çek, kredi</h3><p>Alacak-borç tek yerde: cari hesaplar, çek vadeleri, kredi taksitleri ve ödeme planları — yaklaşanlar ana sayfada.</p></div>
-      <div class="kart"><div class="cip">📡</div><h3>Sinyalsizken de çalışır</h3><p>Tarlada internet yoksa kayıtların cihazda birikir, sinyal gelince kendiliğinden gönderilir.</p></div>
-      <div class="kart"><div class="cip">📊</div><h3>Raporlar</h3><p>Ürün, tarla ve sezon bazlı kâr-zarar; gider kırılımı ve mazot raporu — kararlarını rakamla ver.</p></div>
+  <!-- Güven şeridi -->
+  <section class="kap serit">
+    <div class="serit-ic">
+      <p>Defter, ajanda ve hesap makinesi yerine — <strong>hepsi tek uygulamada.</strong></p>
+      <div class="sayilar">
+        <div class="sayi"><b>6</b><small>yönetim modülü</small></div>
+        <div class="sayi"><b>3 adım</b><small>kâra ulaşma</small></div>
+        <div class="sayi"><b class="yesil">₺ / ekiliş</b><small>net kâr-zarar</small></div>
+      </div>
     </div>
+  </section>
 
-    <h2 class="bolum-baslik">Nasıl çalışır?</h2>
+  <!-- Özellikler -->
+  <section id="ozellikler" class="kap ozellikler">
+    <div class="ozellikler-bas">
+      <span class="etiket">Özellikler</span>
+      <h2 class="bolum">Çiftliğin için tek uygulama</h2>
+      <p>Tarladan depoya, işçiden finansa — kararlarını rakamla ver.</p>
+    </div>
+    <div class="kartlar">
+      <div class="kart">
+        <div class="ikon-kutu yesil">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+        </div>
+        <h3>Ekiliş başına kâr-zarar</h3>
+        <p>Gübre, ilaç, tohum, mazot, işçilik ve satışlar ekilişe işlenir; her tarlanın net kârını sezon bitmeden görürsün.</p>
+      </div>
+      <div class="kart">
+        <div class="ikon-kutu sari">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </div>
+        <h3>Depo &amp; maliyet takibi</h3>
+        <p>Giriş-çıkış hareketleriyle stok her an günceldir; kritik seviyeye düşen ürün seni uyarır. Ağırlıklı ortalama maliyet.</p>
+      </div>
+      <div class="kart">
+        <div class="ikon-kutu yesil">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Görevler &amp; ekip</h3>
+        <p>Çalışanlarına iş ata veya görev havuzuna bırak; kim neyi yaptı takip et. Çalışanlar finansal verileri göremez.</p>
+      </div>
+      <div class="kart">
+        <div class="ikon-kutu sari">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+        </div>
+        <h3>Cari, çek, kredi</h3>
+        <p>Alacak-borç tek yerde: cari hesaplar, çek vadeleri, kredi taksitleri ve ödeme planları — yaklaşanlar ana sayfada.</p>
+      </div>
+      <div class="kart">
+        <div class="ikon-kutu yesil">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+        </div>
+        <h3>Sinyalsizken de çalışır</h3>
+        <p>Tarlada internet yoksa kayıtların cihazda birikir, sinyal gelince kendiliğinden gönderilir.</p>
+      </div>
+      <div class="kart">
+        <div class="ikon-kutu sari">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        </div>
+        <h3>Raporlar</h3>
+        <p>Ürün, tarla ve sezon bazlı kâr-zarar; gider kırılımı ve mazot raporu — kararlarını rakamla ver.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ekiliş vitrini -->
+  <section class="kap vitrin">
+    <div class="vitrin-panel">
+      <div class="vitrin-isik"></div>
+      <div class="vitrin-sol">
+        <span class="etiket sari">Ekiliş başına kâr-zarar</span>
+        <h2>Hangi tarla sana ne kazandırdı?</h2>
+        <p class="vitrin-ozet">Gübre, ilaç, tohum, mazot, işçilik ve satışlar ekilişe işlenir. Her tarlanın net kârını sezon bitmeden görürsün — maliyet ağırlıklı ortalamayla hesaplanır.</p>
+        <ul>
+          <li><span class="elmas">◆</span> Gider kalemleri otomatik ekilişe bağlanır</li>
+          <li><span class="elmas">◆</span> Ürün, tarla ve sezon bazlı kırılım</li>
+          <li><span class="elmas">◆</span> Mazot ve gider raporu tek dokunuşta</li>
+        </ul>
+      </div>
+      <div class="vitrin-tel">
+        <div class="cerceve">
+          <img src="img/02-ekilis.png" alt="Ekiliş detayı — kâr-zarar kartı" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nasıl çalışır -->
+  <section id="nasil" class="kap nasil">
+    <div class="nasil-bas">
+      <span class="etiket">Nasıl çalışır</span>
+      <h2 class="bolum">Üç adımda kârını gör</h2>
+    </div>
     <div class="adimlar">
-      <div class="adim"><div class="no">1</div><h3>Kaydol</h3><p>E-postanla ücretsiz hesap aç, işletmeni ve tarlalarını tanıt.</p></div>
-      <div class="adim"><div class="no">2</div><h3>Kayıtlarını gir</h3><p>Depo çıkışı, satış, işçilik — günlük işleri iki dokunuşla işle.</p></div>
-      <div class="adim"><div class="no">3</div><h3>Kârını gör</h3><p>Her ekilişin gelir-gider dengesi ve net kârı otomatik hesaplanır.</p></div>
+      <div class="adim">
+        <div class="no">1</div>
+        <h3>Kaydol</h3>
+        <p>E-postanla ücretsiz hesap aç, işletmeni ve tarlalarını tanıt.</p>
+      </div>
+      <div class="adim">
+        <div class="no">2</div>
+        <h3>Kayıtlarını gir</h3>
+        <p>Depo çıkışı, satış, işçilik — günlük işleri iki dokunuşla işle.</p>
+      </div>
+      <div class="adim">
+        <div class="no">3</div>
+        <h3>Kârını gör</h3>
+        <p>Her ekilişin gelir-gider dengesi ve net kârı otomatik hesaplanır.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="kapanis">
-      <h2>Çiftçihan çok yakında Google Play ve App Store'da 🌱</h2>
-      <p>Sorun ve önerilerin için bize yaz — çiftçiden gelen her fikir uygulamayı büyütüyor.</p>
-      <a class="rozet dolu" href="mailto:bilgi@ciftcihan.com" style="text-decoration:none">✉️ Bize ulaş</a>
+  <!-- Raporlar -->
+  <section id="raporlar" class="kap raporlar">
+    <div class="rapor-grid">
+      <div class="rapor-kutu acik">
+        <div class="ikon-kutu dolu-yesil">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+        </div>
+        <h3>Sinyalsizken de çalışır</h3>
+        <p>Tarlada internet yoksa kayıtların cihazda birikir; sinyal gelince kendiliğinden gönderilir. Bir kayıt bile kaybolmaz.</p>
+      </div>
+      <div class="rapor-kutu koyu">
+        <div class="ikon-kutu dolu-sari">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Ekibin görebildiği kadar</h3>
+        <p>Çalışanlarına iş ata ya da görev havuzuna bırak; kim neyi yaptı takip et. Çalışanlar finansal verileri göremez.</p>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer class="altbilgi">
-    © 2026 Çiftçihan · <a href="gizlilik.html">Gizlilik Politikası (KVKK)</a> · <a href="mailto:bilgi@ciftcihan.com">bilgi@ciftcihan.com</a>
+  <!-- Kapanış CTA -->
+  <section class="kap kapanis">
+    <div class="kapanis-panel">
+      <div class="kapanis-isik"></div>
+      <div class="kapanis-ic">
+        <h2>Çiftçihan çok yakında.<br>Sen de ilk kullananlardan ol.</h2>
+        <p>Sorun ve önerilerin için bize yaz — çiftçiden gelen her fikir uygulamayı büyütüyor.</p>
+        <div class="btn-satir">
+          <a class="btn-koyu" href="mailto:bilgi@ciftcihan.com">✉️ Bize ulaş</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="kap alt-ic">
+      <div class="alt-marka">
+        <img src="img/ikon.png" alt="Çiftçihan">
+        <span>Çiftçihan</span>
+      </div>
+      <div class="alt-linkler">
+        <a href="gizlilik.html">Gizlilik Politikası (KVKK)</a>
+        <a href="mailto:bilgi@ciftcihan.com">bilgi@ciftcihan.com</a>
+        <span>© 2026 Çiftçihan</span>
+      </div>
+    </div>
   </footer>
 
 </body>
